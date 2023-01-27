@@ -1,18 +1,23 @@
 import { 
+    indexDeck,
     signIn,
     signUp,
-    // indexDeck,
     // createDeck,
     // showDeck,
     // updateDeck,
     // deleteDeck
-} from "./api"
-
+} from "./api.js"
+import {
+    onFailure,
+    onSignInSuccess,
+    onSignUpSuccess,
+    onIndexDeckSuccess
+} from "./ui.js"
 
 
 const messageContainer = document.getElementById('message-container')
 const signUpContainer = document.getElementById('sign-up-form-container')
-const signInContainer = document.getElementById('sign-in-form-container')
+const signInContainer = document.getElementById('auth-container')
 
 
 
@@ -21,26 +26,36 @@ signUpContainer.addEventListener('submit', (event) => {
 	event.preventDefault()
 	const userData = {
 		credentials: {
-			email: event.target['email'].value,
-			password: event.target['password'].value,
+			email: event.target[0].value,
+			password: event.target[1].value
 		},
 	}
-	signUp(userData).then(onSignUpSuccess)
+	signUp(userData)
+    onSignUpSuccess()
     console.log('Heres johnny')
+    console.log(userData)
 })
 
 signInContainer.addEventListener('submit', (event) => {
 	event.preventDefault()
 	const userData = {
 		credentials: {
-			email: event.target['email'].value,
-			password: event.target['password'].value,
+			email: event.target[0].value,
+			password: event.target[1].value,
 		},
 	}
 	signIn(userData)
 		.then((res) => res.json())
+		.then((res) => onSignInSuccess(res.token))
+		.then(indexDeck)
+		.then((res) => res.json())
+		.then((res) => onIndexDeckSuccess(res.decks))
+		.catch(onFailure)
         console.log('...were in')
-		
 })
+
+  
+		
+
 
 

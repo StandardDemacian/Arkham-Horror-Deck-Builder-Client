@@ -17,7 +17,7 @@ import {
 const messageContainer = document.getElementById('message-container')
 const signUpContainer = document.getElementById('sign-up-form-container')
 const signInContainer = document.getElementById('auth-container')
-
+const cardSearchButton = document.getElementById('cardSearchButton')
 
 
 // User Actions
@@ -54,6 +54,15 @@ signInContainer.addEventListener('submit', (event) => {
         console.log('...were in')
 })
 
+//Card Fetch Button
+
+
+cardSearchButton.addEventListener('click', () =>{
+    fetch('https://arkhamdb.com/api/public/cards/core')
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+    
+})
 
 		
 

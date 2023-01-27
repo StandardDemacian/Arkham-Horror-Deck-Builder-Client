@@ -5,6 +5,7 @@ import { store } from "./store.js"
 const messageContainer = document.getElementById("message-container")
 const authContainer = document.getElementById('auth-container')
 const indexContainer = document.getElementById('index-container')
+const signUpContainer = document.getElementById('sign-up-container')
 
 export const onFailure = (error) => {
     messageContainer.innerHTML = `
@@ -20,9 +21,10 @@ export const onSignUpSuccess = () => {
 }
 
 export const onSignInSuccess = (userToken) => {
-    // messageContainer.innerHTML = ''
+    messageContainer.innerHTML = 'Welcome! Please search for a card in the core set!'
     store.userToken = userToken
-    authContainer.classList.add('hide')
+    authContainer.style.display = "none"
+    signUpContainer.style.display = "none"
     indexContainer.classList.remove('hide')
 }
 

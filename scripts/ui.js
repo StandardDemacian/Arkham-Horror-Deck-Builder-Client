@@ -29,14 +29,15 @@ export const onSignInSuccess = (userToken) => {
 
 //Deck Actions
 
-export const onIndexDeckSuccess = (decks) => {
-    decks.forEach((deck) => {
+export const onIndexDeckSuccess = (deck) => {
+    deck.forEach((deck) => {
 		const div = document.createElement('div')
-        div.classList.add('content-card')
+        div.classList.add('deck-list-button')
 		div.innerHTML = `
             <h3>${deck.name}</h3>
-            <button type="button" class="btn btn-primary" data-id="${deck._id}">Show Campaign</button>
+            <button type="button" class="btn btn-primary" data-id="${deck._id}">Show Deck List</button>
         `
 		indexContainer.appendChild(div)
 	})
 }
+

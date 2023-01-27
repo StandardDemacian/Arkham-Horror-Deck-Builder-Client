@@ -23,7 +23,11 @@ export const signIn = (data) => {
 	})
 }
 export const indexDeck = () => {
-    return fetch(`http://localhost:8000/deck`)
+    return fetch(`http://localhost:8000/deck`,{
+    headers: {
+        'Authorization': `Bearer ${store.userToken}`
+    }
+})
 }
 
 export const createDeck = (data) => {
@@ -36,6 +40,18 @@ export const createDeck = (data) => {
         body: JSON.stringify(data)
     })
 }
+
+export const indexCustomers = () => {
+	return fetch(`http://localhost:3000/customers`, {
+		headers: {
+			Authorization: `Bearer ${store.userToken}`,
+		},
+	})
+		
+}
+
+
+
 
 export const showDeck = (id) => {
     return fetch(`http://localhost:8000/deck/${id}`)

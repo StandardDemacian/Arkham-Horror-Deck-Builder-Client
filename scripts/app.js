@@ -3,7 +3,6 @@ import {
     signIn,
     signUp,
     // createDeck,
-    // showDeck,
     // updateDeck,
     // deleteDeck
 } from "./api.js"
@@ -31,7 +30,8 @@ signUpContainer.addEventListener('submit', (event) => {
 		},
 	}
 	signUp(userData)
-    onSignUpSuccess()
+    .then(onSignUpSuccess)
+    .catch(onFailure)
     console.log('Heres johnny')
     console.log(userData)
 })
@@ -49,12 +49,12 @@ signInContainer.addEventListener('submit', (event) => {
 		.then((res) => onSignInSuccess(res.token))
 		.then(indexDeck)
 		.then((res) => res.json())
-		.then((res) => onIndexDeckSuccess(res.decks))
+		.then((res) => onIndexDeckSuccess(res.deck))
 		.catch(onFailure)
         console.log('...were in')
 })
 
-  
+
 		
 
 

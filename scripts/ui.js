@@ -1,5 +1,6 @@
 
 import { store } from "./store.js"
+import { showDeck } from "./api.js"
 
 
 const messageContainer = document.getElementById("message-container")
@@ -29,8 +30,8 @@ export const onSignInSuccess = (userToken) => {
 }
 
 
-//Deck Actions
-
+//Deck Actions reactions
+// On INDEX SUCCESS ----AFTER SIGN IN THIS HAPPENS
 export const onIndexDeckSuccess = (deck) => {
     deck.forEach((deck) => {
 		const div = document.createElement('div')
@@ -40,6 +41,10 @@ export const onIndexDeckSuccess = (deck) => {
             <button type="button" class="btn btn-primary" data-id="${deck._id}">Show Deck List</button>
         `
 		indexContainer.appendChild(div)
+
 	})
 }
-
+//Create Deck
+export const onCreateDeckSuccess = () => {
+    messageContainer.innerText = 'Created a new deck!'
+}

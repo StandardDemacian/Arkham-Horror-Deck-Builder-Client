@@ -2,7 +2,9 @@ import {
     indexDeck,
     signIn,
     signUp,
-    // createDeck,
+    createDeck,
+	// updateDeck,
+	showDeck,
     // updateDeck,
     // deleteDeck
 } from "./api.js"
@@ -10,15 +12,19 @@ import {
     onFailure,
     onSignInSuccess,
     onSignUpSuccess,
-    onIndexDeckSuccess
+    onIndexDeckSuccess,
+	onCreateDeckSuccess
 } from "./ui.js"
 
 
 const messageContainer = document.getElementById('message-container')
 const signUpContainer = document.getElementById('sign-up-form-container')
 const signInContainer = document.getElementById('auth-container')
-const cardSearchButton = document.getElementById('cardSearchButton')
+const cardSearchButtonForm = document.getElementById('card-search-form')
+const createDeckForm = document.getElementById('create-deck-form-container')
+const showDeckInfo = document.querySelector('.deck-list-button')
 
+const cardpagebuttontest = document.getElementById('cardSearchButton')
 
 // User Actions
 signUpContainer.addEventListener('submit', (event) => {
@@ -54,17 +60,75 @@ signInContainer.addEventListener('submit', (event) => {
         console.log('...were in')
 })
 
-//Card Fetch Button
+// Card Fetch Button
 
 
-cardSearchButton.addEventListener('click', () =>{
-    fetch('https://arkhamdb.com/api/public/cards/core')
-  .then((response) => response.json())
-  .then((data) => console.log(data));
-    
+
+
+cardSearchButtonForm.addEventListener('submit', () =>{
+console.log('house')
 })
 
-		
+// cardSearchButtonForm.addEventListener('submit', () =>{
+// 	location.href = "/card-page.html"
+// })
+
+
+// Create Deck Function 
+
+createDeckForm.addEventListener('submit', (event)=>{
+	event.preventDefault()
+	
+	const deckData = {
+		deck : {
+			name : event.target[0].value,
+			Investigator : event.target[1].value,
+			XP : event.target[2].value
+		}
+	}
+	createDeck(deckData)
+			.then(onCreateDeckSuccess)
+			.catch(onFailure)
+	
+})
+
+//Show ONE Deck Function 
+
+// showDeckInfo.addEventListener('click', (event) => {
+//     const id = event.target.getAttribute('data-id')
+//     showDeck(id)
+// 			.then((res) => res.json())
+// 			// .then((res) => onShowDeckSuccess(res.deck))
+// 			.catch(onFailure)
+// })
+
+
+
+
+// showDeckInfo.addEventListener('submit', (event) => {
+// 	event.preventDefault()
+// 	const id = event.target.getAttribute('data-id')
+// 	const deckData = {
+// 		deck : {
+// 			name : event.target[0].value,
+// 			Investigator : event.target[1].value,
+// 			XP : event.target[2].value
+// 		}
+// 	}
+// 	updateDeck(deckData, id)
+// 		.then(console.log)
+// 		.catch(console.error)
+
+// 	updateDeck(deckData, id)
+// 		.then(onUpdatePlayerSuccess)
+// 		.catch(console.error)
+
+// 	updateDeck(deckData, id)
+// 		.then(onUpdatePlayerSuccess)
+// 		.catch(onFailure)
+// })
+
+
 
 
 

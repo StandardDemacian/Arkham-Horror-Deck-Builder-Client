@@ -28,9 +28,11 @@
           </div>
           <div class="col-sm-4">
             <h3>Card Search</h3>
-            <input type="text" class="" id="card-search" placeholder="Vicious Blow">
+          <form id="card-search-form" action="/card-page.html">
+            <input type="text" name="card" id="card-search" placeholder="Vicious Blow">
             <br>
-            <button type="submit" class="btn btn-primary" id="cardSearchButton">Search</button>
+            <button>Search</button>
+          </form>
           </div>
           <div class="col-sm-4" id="auth-container">
             <h3>Sign In Here! </h3>
@@ -49,7 +51,15 @@
         <div class="container">
             <div class="row text-center">
               <div class="col-lg-12 hide" id="index-container" >
-                <h4>Deck List</h4>
+                <h4>Create Deck</h4>
+                <form id="create-deck-form-container">
+                  <input type="text" name="name" placeholder="Name">
+                  <input type="text" name ="Investigator" placeholder="Investigator">
+                  <input type="number" name ="XP" placeholder="Current XP">
+                  <button type="submit"> Create Deck</button>
+                </form>
+                <br>
+                <h4>Current Deck List</h4>
               </div>
               <div class="col-sm-4">
          

@@ -35,26 +35,20 @@ export const createDeck = (data) => {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+			'Authorization': `Bearer ${store.userToken}`
         },
         body: JSON.stringify(data)
     })
 }
 
-export const indexCustomers = () => {
-	return fetch(`http://localhost:3000/customers`, {
-		headers: {
-			Authorization: `Bearer ${store.userToken}`,
-		},
-	})
-		
-}
-
-
-
 
 export const showDeck = (id) => {
-    return fetch(`http://localhost:8000/deck/${id}`)
+    return fetch(`http://localhost:8000/deck/${id}`,{
+		headers: {
+			'Authorization': `Bearer ${store.userToken}`
+		}
+	})
 }
 
 export const updateDeck = (data, id) => {

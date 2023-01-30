@@ -57,7 +57,7 @@ export const updateDeck = (data, id) => {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
-				'Authorization' : `Bearer ${store.userToken}`
+				// 'Authorization' : `Bearer ${store.userToken}`
 			},
 			body: JSON.stringify(data),
 		})
@@ -74,4 +74,16 @@ export const deleteDeck= (id) => {
 
 export const showCard = (name) => {
 	return fetch(`http://localhost:8000/card/${name}`)
+}
+
+export const addCard = (data,id) => {
+	return fetch(`http://localhost:8000/deck/addcard/${id}`, {
+			method: 'PATCH',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				// 'Authorization' : `Bearer ${store.userToken}`
+			},
+			body: JSON.stringify({cardId: data}),
+		})
 }

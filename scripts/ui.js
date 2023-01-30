@@ -101,13 +101,6 @@ export const onShowDeckSuccess = (deck) => {
                
             }
         }
-        updateDeck(deckData, id)
-            .then(console.log)
-            .catch(console.error)
-    
-        updateDeck(deckData, id)
-            .then(onUpdateDeckSuccess)
-            .catch(console.error)
     
         updateDeck(deckData, id)
             .then(onUpdateDeckSuccess)

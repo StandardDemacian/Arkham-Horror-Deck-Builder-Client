@@ -75,3 +75,15 @@ export const deleteDeck= (id) => {
 export const showCard = (name) => {
 	return fetch(`http://localhost:8000/card/${name}`)
 }
+
+export const addCard = (id,cardObj) => {
+	return fetch(`http://localhost:8000/deck/${id}`, {
+			method: 'PATCH',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization' : `Bearer ${store.userToken}`
+			},
+			body: JSON.stringify(cardObj),
+		})
+}

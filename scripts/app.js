@@ -87,23 +87,27 @@ const onGetCardSuccess = (card) => {
 
 	const addCardForm = document.createElement('div')
 	addCardForm.classList.add('add-card')
+	addCardForm.setAttribute('data-id',card._id)
 	addCardForm.innerHTML = `
 		<form id = "add-card-form">
 		<input type="text" name="card" class="form-control" placeholder="DeckId#">
           <br>
-          <button type="submit" class="btn btn-primary" id="search-button">Add Card to Deck</button>
+          <button data-id = "${card._id}"  type="submit" class="btn btn-primary" id="search-button">Add Card to Deck</button>
 		</form>
 		`
-	addCardForm.addEventListener('submit' , (event) => {
-		event.preventDefault()
-		const deckId = event.target[0].value
-		const cardObj =  {
-		card : {
-			name: 'Roland Banks'
-		}
+		addCardForm.addEventListener('submit', (event) => {
+			event.preventDefault()
+			const cardId = event.target.getAttribute('data-id')
+			const deckData = {
+				deck : {
+					cards : [cardId]
+				   
+				}
+				
+			}
 		
-	}
-	addCard(deckId,cardObj)
+			addCard(deckData, cardId)
+				.catch(onFailure)
 	})
 
 

@@ -42,14 +42,12 @@
 }
 
 const onGetCardSuccess = (card) => { //the parameter doesn't have a value
-        console.log(card.card)
         const foundCard = document.createElement('div')
         foundCard.classList.add('card-display')
         foundCard.innerHTML = `
         <img src = "https://arkhamdb.com/${card.card.imagesrc}" >
         <p>${card.card.text}
         `
-        console.log(foundCard)
         foundCard.setAttribute('data-url',card)
         cardObjectContainer.appendChild(foundCard)
     }

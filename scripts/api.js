@@ -57,6 +57,7 @@ export const updateDeck = (data, id) => {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
+				'Authorization' : `Bearer ${store.userToken}`
 			},
 			body: JSON.stringify(data),
 		})
@@ -64,7 +65,10 @@ export const updateDeck = (data, id) => {
 
 export const deleteDeck= (id) => {
     return fetch(`http://localhost:8000/deck/${id}`, {
-			method: 'DELETE'
+			method: 'DELETE',
+			headers: {
+				'Authorization': `Bearer ${store.userToken}`
+			}
 		})
 }
 

@@ -22,7 +22,7 @@ const signUpContainer = document.getElementById('sign-up-form-container')
 const signInContainer = document.getElementById('auth-container')
 const cardSearchButtonForm = document.getElementById('card-search-form')
 const createDeckForm = document.getElementById('create-deck-form-container')
-const showDeckInfo = document.querySelector('.deck-list-button')
+
 
 const cardpagebuttontest = document.getElementById('cardSearchButton')
 
@@ -65,15 +65,6 @@ signInContainer.addEventListener('submit', (event) => {
 
 
 
-cardSearchButtonForm.addEventListener('submit', () =>{
-console.log('house')
-})
-
-// cardSearchButtonForm.addEventListener('submit', () =>{
-// 	location.href = "/card-page.html"
-// })
-
-
 // Create Deck Function 
 
 createDeckForm.addEventListener('submit', (event)=>{
@@ -98,7 +89,7 @@ createDeckForm.addEventListener('submit', (event)=>{
 //     const id = event.target.getAttribute('data-id')
 //     showDeck(id)
 // 			.then((res) => res.json())
-// 			// .then((res) => onShowDeckSuccess(res.deck))
+// 			.then((res) => onShowDeckSuccess(res.deck))
 // 			.catch(onFailure)
 // })
 

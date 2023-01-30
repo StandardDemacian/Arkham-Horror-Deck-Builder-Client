@@ -38,12 +38,16 @@ export const onIndexDeckSuccess = (deck) => {
         div.classList.add('deck-list-button')
 		div.innerHTML = `
             <h3>${deck.name}</h3>
-            <button type="button" class="btn btn-primary" data-id="${deck._id}">Show Deck List</button>
+            <form action= "/deck-page.html" name="deck-page-form">
+            <button type= "submit" class="btn btn-primary" data-id="${deck._id}">Show Deck List</button>
+            </form>
         `
 		indexContainer.appendChild(div)
-
+        
 	})
 }
+
+
 //Create Deck
 export const onCreateDeckSuccess = () => {
     messageContainer.innerText = 'Created a new deck!'

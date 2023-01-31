@@ -85,11 +85,17 @@ export const onShowDeckSuccess = (deck) => {
         <input type="text" name="XP" value="${deck.XP}">
         <input type="submit" value="Update deck">
         </form>
-        <button data-id="${deck._id}" id= "delete-button">Delete deck</button>
+        <button data-id="${deck._id}" id="delete-button">Delete deck</button>
+        <button data-id="${deck._id}" id="deck-list"> Deck List</button>
     `
     while(showOneDeck.firstChild) {
         showOneDeck.removeChild(showOneDeck.firstChild)
     }
+
+//DECK LIST BUTTON
+    document.getElementById("deck-list").addEventListener('click')
+
+
     div.addEventListener('submit', (event) => {
         event.preventDefault()
         const id = event.target.getAttribute('data-id')
@@ -114,14 +120,16 @@ export const onShowDeckSuccess = (deck) => {
     
         deleteDeck(id)
             .then(onDeleteDeckSuccess)
-            .catch(console.error)
-    
-        deleteDeck(id)
-            .then(onDeleteDeckSuccess)
             .catch(onFailure)
     })
 
     showOneDeck.appendChild(div)
+}
+
+//on Card add success
+
+export const onCardAddSuccess = () => {
+        messageContainer.innerText = 'Card was added to deck successfully!'
 }
 
 

@@ -71,7 +71,7 @@ cardSearchInput.addEventListener('submit', (event) =>{
 	event.preventDefault()
 const cardName = event.target[0].value
 const showCardByName = (cardName) => {
-	fetch(`http://localhost:8000/card/${cardName}`)
+	fetch(`https://sheltered-tundra-83066.herokuapp.com/card/${cardName}`)
 	.then(res => res.json())
 	.then((data)=>onGetCardSuccess(data))
 	.catch(err => console.error(err))

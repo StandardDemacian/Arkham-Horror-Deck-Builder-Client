@@ -86,7 +86,7 @@ export const onShowDeckSuccess = (deck) => {
         <input type="submit" value="Update deck">
         </form>
         <button data-id="${deck._id}" id="delete-button">Delete deck</button>
-        <button data-id="${deck._id}" id="deck-list"> Deck List</button>
+    
     `
     while(showOneDeck.firstChild) {
         showOneDeck.removeChild(showOneDeck.firstChild)

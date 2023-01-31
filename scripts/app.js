@@ -5,7 +5,7 @@ import {
     signUp,
     createDeck,
 	showDeck,
-	addCard
+	addCard,
     
 } from "./api.js"
 import {
@@ -13,7 +13,8 @@ import {
     onSignInSuccess,
     onSignUpSuccess,
     onIndexDeckSuccess,
-	onCreateDeckSuccess
+	onCreateDeckSuccess,
+	onCardAddSuccess
 } from "./ui.js"
 
 
@@ -69,7 +70,7 @@ console.log(cardSearchInput)
 cardSearchInput.addEventListener('submit', (event) =>{
 	event.preventDefault()
 const cardName = event.target[0].value
-const showCard = (cardName) => {
+const showCardByName = (cardName) => {
 	fetch(`http://localhost:8000/card/${cardName}`)
 	.then(res => res.json())
 	.then((data)=>onGetCardSuccess(data))
@@ -100,6 +101,7 @@ const onGetCardSuccess = (card) => {
 			const deckId = event.target[0].value
 			const cardData = card.card._id
 			addCard(cardData, deckId)
+			onCardAddSuccess()
 				.catch(onFailure)
 	})
 
@@ -107,7 +109,7 @@ const onGetCardSuccess = (card) => {
 	cardSearchInput.appendChild(foundCard)
 	cardSearchInput.appendChild(addCardForm)
 	}
-showCard(cardName)
+showCardByName(cardName)
 })
 
 
@@ -133,3 +135,7 @@ createDeckForm.addEventListener('submit', (event)=>{
 	
 	
 })
+
+
+//SHOW CARD DECK LIST
+

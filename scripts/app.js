@@ -4,9 +4,7 @@ import {
     signIn,
     signUp,
     createDeck,
-	showDeck,
 	addCard,
-    
 } from "./api.js"
 import {
     onFailure,
@@ -21,14 +19,13 @@ import {
 const signUpContainer = document.getElementById('sign-up-form-container')
 const signInContainer = document.getElementById('auth-container')
 const createDeckForm = document.getElementById('create-deck-form-container')
-const deckInfo = document.getElementsByClassName('fucking-work')
 const cardSearchInput = document.getElementById('card-search-form')
+const cardListRemovable = document.getElementById('card-list-removable')
 
 
 
 
-console.log(deckInfo)
-// User Actions
+// Sign Up
 signUpContainer.addEventListener('submit', (event) => {
 	event.preventDefault()
 	const userData = {
@@ -40,10 +37,10 @@ signUpContainer.addEventListener('submit', (event) => {
 	signUp(userData)
     .then(onSignUpSuccess)
     .catch(onFailure)
-    console.log('Heres johnny')
-    console.log(userData)
 })
 
+
+//sign in + indexs the decks 
 signInContainer.addEventListener('submit', (event) => {
 	event.preventDefault()
 	const userData = {
@@ -59,57 +56,59 @@ signInContainer.addEventListener('submit', (event) => {
 		.then((res) => res.json())
 		.then((res) => onIndexDeckSuccess(res.deck))
 		.catch(onFailure)
-        console.log('...were in')
 })
 
-
-//SHOW Cards
-
-console.log(cardSearchInput)
-
+//Card Search Box + management
 cardSearchInput.addEventListener('submit', (event) =>{
 	event.preventDefault()
-const cardName = event.target[0].value
-const showCardByName = (cardName) => {
-	fetch(`https://sheltered-tundra-83066.herokuapp.com/card/${cardName}`)
-	.then(res => res.json())
-	.then((data)=>onGetCardSuccess(data))
-	.catch(err => console.error(err))
-  
-}
-const onGetCardSuccess = (card) => { 
-	const foundCard = document.createElement('div')
-	foundCard.classList.add('card-display')
-	foundCard.innerHTML = `
-		<img src = "https://arkhamdb.com/${card.card.imagesrc}" >
-		<p>${card.card.text}
-		`
-	foundCard.setAttribute('data-url',card)
+	while(cardListRemovable.firstChild) {
+		cardListRemovable.removeChild(cardListRemovable.firstChild)
+	}
+	const cardName = event.target[0].value
 
-	const addCardForm = document.createElement('div')
-	addCardForm.classList.add('add-card')
-	addCardForm.setAttribute('data-id',card._id)
-	addCardForm.innerHTML = `
-		<form id = "add-card-form">
-		<input type="text" name="deck-id" class="form-control" placeholder="DeckId#">
-          <br>
-          <button data-id = "${card._id}"  type="submit" class="btn btn-primary" id="search-button">Add Card to Deck</button>
-		</form>
-		`
+	const showCardByName = (cardName) => {
+		fetch(`http://localhost:8000/card/${cardName}`)
+		.then(res => res.json())
+		.then((data)=>onGetCardSuccess(data))
+		.catch(err => console.error(err))
+			}
+
+	const onGetCardSuccess = (card) => { 
+		const foundCard = document.createElement('div')
+			foundCard.classList.add('card-display')
+			foundCard.innerHTML = `
+				<img src = "https://arkhamdb.com/${card.card.imagesrc}" >
+				<p>${card.card.text}
+				`
+		foundCard.setAttribute('data-url',card)
+
+		const addCardForm = document.createElement('div')
+			addCardForm.classList.add('add-card')
+			addCardForm.setAttribute('data-id',card._id)
+			addCardForm.innerHTML = `
+				<form id = "add-card-form">
+				<input type="text" name="deck-id" class="form-control" placeholder="DeckId#">
+          		<br>
+          		<button data-id = "${card._id}"  type="submit" class="btn btn-primary" id="search-button">Add Card to Deck</button>
+				</form>
+				`
 		addCardForm.addEventListener('submit', (event) => {
 			event.preventDefault()
 			const deckId = event.target[0].value
 			const cardData = card.card._id
 			addCard(cardData, deckId)
 			onCardAddSuccess()
-				.catch(onFailure)
-	})
+			.catch(onFailure)
+			
+		})
 
-
-	cardSearchInput.appendChild(foundCard)
-	cardSearchInput.appendChild(addCardForm)
+		cardListRemovable.appendChild(foundCard)
+		cardListRemovable.appendChild(addCardForm)
+		
 	}
-showCardByName(cardName)
+			
+	showCardByName(cardName)
+
 })
 
 
@@ -137,5 +136,4 @@ createDeckForm.addEventListener('submit', (event)=>{
 })
 
 
-//SHOW CARD DECK LIST
 

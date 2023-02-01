@@ -10,6 +10,9 @@ const indexContainer = document.getElementById('index-container')
 const signUpContainer = document.getElementById('sign-up-container')
 const homeContainer = document.getElementById('home-container')
 const showOneDeck = document.getElementById('show-one-deck')
+const decklistremovable = document.getElementById('deck-list-removable')
+
+
 
 export const onFailure = (error) => {
     messageContainer.innerHTML = `
@@ -31,6 +34,7 @@ export const onSignInSuccess = (userToken) => {
     authContainer.style.display = "none"
     signUpContainer.style.display = "none"
     indexContainer.classList.remove('hide')
+    decklistremovable.classList.remove('hide')
     
 }
 
@@ -40,16 +44,16 @@ export const onSignInSuccess = (userToken) => {
 export const onIndexDeckSuccess = (deck) => {
    
     deck.forEach((deck) => {
-		const div = document.createElement('div')
-        div.classList.add('deck-information')
-		div.innerHTML = `
+		const deckinfo = document.createElement('div')
+        deckinfo.classList.add('deck-information')
+		deckinfo.innerHTML = `
             <h3>${deck.name}</h3>
-            <button  type= "submit" class="btn btn-primary" data-id="${deck._id}">Show Deck List</button>
+            <button  type= "submit" class="btn btn-primary" data-id="${deck._id}">Show Deck Contents</button>
         
         `
-        div.addEventListener('click', (event) => {
+        deckinfo.addEventListener('click', (event) => {
             const id = event.target.getAttribute('data-id')
-            console.log(id)
+            console.log('sandwhich')
             if (!id) return
             showDeck(id)
                     .then((res) => res.json())
@@ -58,18 +62,22 @@ export const onIndexDeckSuccess = (deck) => {
                 
         })
 
-		indexContainer.appendChild(div)
-       
+		decklistremovable.appendChild(deckinfo)
         
+    
         
 	})
+
 }
 
 
 //Create Deck
 export const onCreateDeckSuccess = () => {
     messageContainer.innerText = 'Created a new deck!'
-    indexDeck
+    while(decklistremovable.firstChild) {
+        decklistremovable.removeChild(decklistremovable.firstChild)
+    }
+    
 }
 
 export const onShowDeckSuccess = (deck) => {
@@ -92,10 +100,6 @@ export const onShowDeckSuccess = (deck) => {
         showOneDeck.removeChild(showOneDeck.firstChild)
     }
 
-//DECK LIST BUTTON
-    document.getElementById("deck-list").addEventListener('click')
-
-
     div.addEventListener('submit', (event) => {
         event.preventDefault()
         const id = event.target.getAttribute('data-id')
@@ -110,7 +114,14 @@ export const onShowDeckSuccess = (deck) => {
     
         updateDeck(deckData, id)
             .then(onUpdateDeckSuccess)
+            .then(indexDeck)
+			.then((res) => res.json())
+			.then((res) => onIndexDeckSuccess(res.deck))
             .catch(onFailure)
+            while(decklistremovable.firstChild) {
+                decklistremovable.removeChild(decklistremovable.firstChild)
+            }
+
     })
     
     div.addEventListener('click', (event) => {
@@ -120,7 +131,15 @@ export const onShowDeckSuccess = (deck) => {
     
         deleteDeck(id)
             .then(onDeleteDeckSuccess)
-            .catch(onFailure)
+            .then(indexDeck)
+			.then((res) => res.json())
+			.then((res) => onIndexDeckSuccess(res.deck))
+			.catch(onFailure)
+            while(decklistremovable.firstChild) {
+                decklistremovable.removeChild(decklistremovable.firstChild)
+            }
+
+            
     })
 
     showOneDeck.appendChild(div)
@@ -137,9 +156,15 @@ export const onCardAddSuccess = () => {
 
 export const onUpdateDeckSuccess = () => {
     messageContainer.innerText = 'Deck Successfully updated'
+    while(showOneDeck.firstChild) {
+        showOneDeck.removeChild(showOneDeck.firstChild)
+    }
 }
 
 
 export const onDeleteDeckSuccess = () => {
     messageContainer.innerText = 'Deck was deleted successfully'
+    while(showOneDeck.firstChild) {
+        showOneDeck.removeChild(showOneDeck.firstChild)
+    }
 }

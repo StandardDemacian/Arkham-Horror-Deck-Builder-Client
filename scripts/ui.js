@@ -43,7 +43,7 @@ export const onSignInSuccess = (userToken) => {
 //Deck Actions reactions
 // On INDEX SUCCESS ----AFTER SIGN IN THIS HAPPENS
 export const onIndexDeckSuccess = (deck) => {
-   
+
     deck.forEach((deck) => {
 		const deckinfo = document.createElement('div')
         deckinfo.classList.add('deck-information')
@@ -61,13 +61,8 @@ export const onIndexDeckSuccess = (deck) => {
                     .catch(onFailure)
 
         })
-
-		decklistremovable.appendChild(deckinfo)
-        
-    
-        
+		decklistremovable.appendChild(deckinfo)   
 	})
-
 }
 
 
@@ -86,16 +81,14 @@ const getCardName = (cardData) => {
     const deckCards = document.createElement('div')
     const cardName = cardData.card.name
     deckCards.innerHTML = `
-    
     <p style = "font-size: 20px">${cardName}<p>
     `
-
     cardsInDeck.append(deckCards)
     cardsInDeck.classList.remove('hide')
 
 }
 
-
+//shows decks + adds event listeners and divs for showOne, Delete, and Create
 export const onShowDeckSuccess = (deck) => {
 
     for(let i = 0; i<deck.cards.length; i++){
@@ -142,10 +135,10 @@ export const onShowDeckSuccess = (deck) => {
 			.then((res) => res.json())
 			.then((res) => onIndexDeckSuccess(res.deck))
             .catch(onFailure)
+
             while(decklistremovable.firstChild) {
                 decklistremovable.removeChild(decklistremovable.firstChild)
-            }
-
+                        }
     })
     
     div.addEventListener('click', (event) => {

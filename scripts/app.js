@@ -16,16 +16,12 @@ import {
 	onCardAddSuccess
 } from "./ui.js"
 
-
 const signUpContainer = document.getElementById('sign-up-form-container')
 const signInContainer = document.getElementById('auth-container')
 const createDeckForm = document.getElementById('create-deck-form-container')
 const cardSearchInput = document.getElementById('card-search-form')
 const cardListRemovable = document.getElementById('card-list-removable')
 const cardSearchMainContainer = document.getElementById('card-search-container')
-
-
-
 
 // Sign Up
 signUpContainer.addEventListener('submit', (event) => {
@@ -40,7 +36,6 @@ signUpContainer.addEventListener('submit', (event) => {
     .then(onSignUpSuccess)
     .catch(onFailure)
 })
-
 
 //sign in + indexs the decks 
 signInContainer.addEventListener('submit', (event) => {
@@ -63,9 +58,9 @@ signInContainer.addEventListener('submit', (event) => {
 //Card Search Box + management
 cardSearchInput.addEventListener('submit', (event) =>{
 	event.preventDefault()
-	while(cardListRemovable.firstChild) {
-		cardListRemovable.removeChild(cardListRemovable.firstChild)
-	}
+		while(cardListRemovable.firstChild) {
+			cardListRemovable.removeChild(cardListRemovable.firstChild)
+			}
 	const cardName = event.target[0].value
 
 	const showCardByName = (cardName) => {
@@ -128,7 +123,6 @@ createDeckForm.addEventListener('submit', (event)=>{
 			XP : event.target[2].value
 		}
 	}
-
 	createDeck(deckData)
 			.then(onCreateDeckSuccess)
 			.then(indexDeck)

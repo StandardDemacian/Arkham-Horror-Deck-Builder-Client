@@ -12,8 +12,6 @@ export const signUp = (data) => {
 	})
 }
 
-
-
 export const signIn = (data) => {
 	return fetch(`http://localhost:8000/sign-in`, {
 		method: 'POST',
@@ -24,12 +22,13 @@ export const signIn = (data) => {
 		body: JSON.stringify(data),
 	})
 }
+
 export const indexDeck = () => {
     return fetch(`http://localhost:8000/deck`,{
-    headers: {
+    	headers: {
         'Authorization': `Bearer ${store.userToken}`
-    }
-})
+    	}
+	})
 }
 
 export const createDeck = (data) => {
@@ -43,7 +42,6 @@ export const createDeck = (data) => {
         body: JSON.stringify(data)
     })
 }
-
 
 export const showDeck = (id) => {
     return fetch(`http://localhost:8000/deck/${id}`,{

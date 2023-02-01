@@ -59,7 +59,7 @@ export const updateDeck = (data, id) => {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
-				// 'Authorization' : `Bearer ${store.userToken}`
+				'Authorization' : `Bearer ${store.userToken}`
 			},
 			body: JSON.stringify(data),
 		})
@@ -84,12 +84,14 @@ export const addCard = (data,id) => {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
+				'Authorization' : `Bearer ${store.userToken}`
 			},
 			body: JSON.stringify({cardId: data}),
 		})
 }
 
 export const showCardbyId =(id)=> {
-	return fetch(`http://localhost:8000/card/${id}`)
+	console.log("Here")
+	return fetch(`http://localhost:8000/card/id/${id}`)
 
 }

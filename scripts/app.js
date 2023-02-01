@@ -5,6 +5,7 @@ import {
     signUp,
     createDeck,
 	addCard,
+	
 } from "./api.js"
 import {
     onFailure,
@@ -21,6 +22,7 @@ const signInContainer = document.getElementById('auth-container')
 const createDeckForm = document.getElementById('create-deck-form-container')
 const cardSearchInput = document.getElementById('card-search-form')
 const cardListRemovable = document.getElementById('card-list-removable')
+const cardSearchMainContainer = document.getElementById('card-search-container')
 
 
 
@@ -77,11 +79,14 @@ cardSearchInput.addEventListener('submit', (event) =>{
 		const foundCard = document.createElement('div')
 			foundCard.classList.add('card-display')
 			foundCard.innerHTML = `
-				<img src = "https://arkhamdb.com/${card.card.imagesrc}" >
-				<p>${card.card.text}
+				<img src = "https://arkhamdb.com/${card.card.imagesrc}" id=card-art>
 				`
 		foundCard.setAttribute('data-url',card)
-
+		const cardText = document.createElement('div')
+				cardText.innerHTML = `
+				<br>
+				<p>${card.card.text}</p>
+				`
 		const addCardForm = document.createElement('div')
 			addCardForm.classList.add('add-card')
 			addCardForm.setAttribute('data-id',card._id)
@@ -89,7 +94,7 @@ cardSearchInput.addEventListener('submit', (event) =>{
 				<form id = "add-card-form">
 				<input type="text" name="deck-id" class="form-control" placeholder="DeckId#">
           		<br>
-          		<button data-id = "${card._id}"  type="submit" class="btn btn-primary" id="search-button">Add Card to Deck</button>
+          		<button data-id = "${card._id}"  type="submit" class="btn btn-primary">Add Card to Deck</button>
 				</form>
 				`
 		addCardForm.addEventListener('submit', (event) => {
@@ -98,13 +103,13 @@ cardSearchInput.addEventListener('submit', (event) =>{
 			const cardData = card.card._id
 			addCard(cardData, deckId)
 			onCardAddSuccess()
-			.catch(onFailure)
 			
 		})
 
 		cardListRemovable.appendChild(foundCard)
+		cardListRemovable.appendChild(cardText)
 		cardListRemovable.appendChild(addCardForm)
-		
+		cardSearchMainContainer.appendChild(cardListRemovable)
 	}
 			
 	showCardByName(cardName)
@@ -130,10 +135,10 @@ createDeckForm.addEventListener('submit', (event)=>{
 			.then((res) => res.json())
 			.then((res) => onIndexDeckSuccess(res.deck))
 			.catch(onFailure)
-       		 console.log('...building')
-	
-	
 })
 
+//SHOW ALL CARDS IN DECK uses showCardById 
+
+// export const showCardbyId =(id)=> {
 
 

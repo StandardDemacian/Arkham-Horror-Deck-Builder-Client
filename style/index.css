@@ -20,6 +20,7 @@
   body{
     background-image: url(https://img.freepik.com/free-photo/grunge-vintage-old-paper-background_1373-431.jpg?w=1060&t=st=1675209147~exp=1675209747~hmac=3b4e8bf7cc5a494a267fee9c166192974171fa3b93eda8ff6281081baf696142);
     background-size: cover;
+    align-items: center;
 }
 
 #title{
@@ -50,7 +51,8 @@
     font-family: 'Playfair Display', serif;
     border: black;
     border-style: solid;
-    background-color: rgba(0, 0, 49, 0.15)
+    background-color: rgba(0, 0, 49, 0.15);
+    text-align: center;
 }
 
 #index-container{
@@ -65,4 +67,27 @@
     border: black;
     border-style: solid;
     background-color: rgba(0, 0, 49, 0.15)
+}
+
+
+#card-art{
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    margin: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.home-container{
+    text-align: center;
+}
+
+#cards-in-deck{
+    
+    font-family: 'Playfair Display', serif;
+    border: black;
+    border-style: solid;
+    text-align: center;
+    
 }

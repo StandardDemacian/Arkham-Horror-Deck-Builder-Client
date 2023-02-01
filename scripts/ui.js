@@ -1,6 +1,6 @@
 
 import { store } from "./store.js"
-import { deleteDeck, indexDeck, showDeck,updateDeck } from "./api.js"
+import { deleteDeck, indexDeck, showDeck,updateDeck,showCardbyId } from "./api.js"
 
 
 
@@ -11,6 +11,7 @@ const signUpContainer = document.getElementById('sign-up-container')
 const homeContainer = document.getElementById('home-container')
 const showOneDeck = document.getElementById('show-one-deck')
 const decklistremovable = document.getElementById('deck-list-removable')
+const cardsInDeck = document.getElementById('cards-in-deck')
 
 
 
@@ -53,13 +54,12 @@ export const onIndexDeckSuccess = (deck) => {
         `
         deckinfo.addEventListener('click', (event) => {
             const id = event.target.getAttribute('data-id')
-            console.log('sandwhich')
             if (!id) return
             showDeck(id)
                     .then((res) => res.json())
                     .then((res) => onShowDeckSuccess(res.deck))
                     .catch(onFailure)
-                
+
         })
 
 		decklistremovable.appendChild(deckinfo)
@@ -71,6 +71,8 @@ export const onIndexDeckSuccess = (deck) => {
 }
 
 
+
+
 //Create Deck
 export const onCreateDeckSuccess = () => {
     messageContainer.innerText = 'Created a new deck!'
@@ -80,13 +82,34 @@ export const onCreateDeckSuccess = () => {
     
 }
 
+const getCardName = (cardData) => {
+    const deckCards = document.createElement('div')
+    const cardName = cardData.card.name
+    deckCards.innerHTML = `
+    
+    <p style = "font-size: 20px">${cardName}<p>
+    `
+
+    cardsInDeck.append(deckCards)
+    cardsInDeck.classList.remove('hide')
+
+}
+
+
 export const onShowDeckSuccess = (deck) => {
+
+    for(let i = 0; i<deck.cards.length; i++){
+        showCardbyId(deck.cards[i])
+        .then(res => res.json())
+        .then(cardData => (getCardName(cardData)))
+    }
+
     const div = document.createElement('div')
     div.innerHTML = `
         <h3>${deck.name} </h3>
-        <p>${deck.Investigator}</p>
-        <p>${deck.XP}</p>
-        <p>${deck._id}</p>
+        <p> Ivestigator: ${deck.Investigator}</p>
+        <p>XP: ${deck.XP}</p>
+        <p>Deck ID: ${deck._id}</p>
         <form data-id="${deck._id}">
         <input type="text" name="name" value="${deck.name}">
         <input type="text" name="Investigator" value="${deck.Investigator}">
@@ -96,6 +119,7 @@ export const onShowDeckSuccess = (deck) => {
         <button data-id="${deck._id}" id="delete-button">Delete deck</button>
     
     `
+   
     while(showOneDeck.firstChild) {
         showOneDeck.removeChild(showOneDeck.firstChild)
     }
@@ -149,6 +173,7 @@ export const onShowDeckSuccess = (deck) => {
 
 export const onCardAddSuccess = () => {
         messageContainer.innerText = 'Card was added to deck successfully!'
+        indexDeck()
 }
 
 

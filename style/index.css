@@ -91,3 +91,45 @@
     text-align: center;
     
 }
+
+#class-icon-container{
+    font-family: ArkhamFont;
+    font-size: 90px;
+}
+
+.seeker-icon{
+    color: rgb(204, 204, 0);
+    text-shadow: -2px 2px 0 #000,
+    1px 1px 0 #000,
+   2px -2px 0 #000,
+  -2px -1px 0 #000;
+}
+
+.mystic-icon{
+    color: rgb(134, 4, 134);
+    text-shadow: -2px 2px 0 #000,
+    2px 2px 0 #000,
+   2px -2px 0 #000,
+  -2px -1px 0 #000;
+}
+.survivor-icon{
+    color: rgb(167, 19, 19);
+    text-shadow: -2px 2px 0 #000,
+    1px 1px 0 #000,
+   2px -2px 0 #000,
+  -2px -1px 0 #000;
+}
+.rogue-icon{
+    color: rgb(15, 116, 15);
+    text-shadow: -2px 2px 0 #000,
+    1px 1px 0 #000,
+   2px -2px 0 #000,
+  -2px -1px 0 #000;
+}
+.guardian-icon{
+    color: rgb(22, 22, 188);
+    text-shadow: -2px 2px 0 rgb(4, 2, 2),
+    1px 1px 0 #000,
+   2px -2px 0 #000,
+  -2px -1px 0 #000;
+}

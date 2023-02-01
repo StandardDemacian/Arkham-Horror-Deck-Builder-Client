@@ -13,6 +13,7 @@ const showOneDeck = document.getElementById('show-one-deck')
 const decklistremovable = document.getElementById('deck-list-removable')
 const cardsInDeck = document.getElementById('cards-in-deck')
 const cardSearchcontainer = document.getElementById('card-search-container')
+const classIcon = document.getElementById('class-icon-container')
 
 
 export const onFailure = (error) => {
@@ -100,21 +101,59 @@ export const onShowDeckSuccess = (deck) => {
         <h3>${deck.name} </h3>
         <p> Ivestigator: ${deck.Investigator}</p>
         <p>XP: ${deck.XP}</p>
+        <p>class: ${deck.class}</p>
         <p>Deck ID: ${deck._id}</p>
         <form data-id="${deck._id}">
         <input type="text" name="name" value="${deck.name}">
         <input type="text" name="Investigator" value="${deck.Investigator}">
         <input type="text" name="XP" value="${deck.XP}">
+        <input type="text" name="class" value="${deck.class}">
         <input type="submit" value="Update deck">
         </form>
         <button data-id="${deck._id}" id="delete-button">Delete deck</button>
     
     `
+
+    switch (deck.class) {
+  
+        case
+            "Rogue":
+                classIcon.innerText = 'T'
+                classIcon.classList = ''
+                classIcon.classList.add('rogue-icon')
+                    break;
+        case
+            "Guardian":
+                classIcon.innerText = 'Q'
+                classIcon.classList = ''
+                classIcon.classList.add('guardian-icon')
+                    break;  
+        case
+            "Survivor":
+                classIcon.innerText = 'R'
+                classIcon.classList = ''
+                classIcon.classList.add('survivor-icon')
+                    break;
+     
+        case
+            "Mystic":
+                classIcon.innerText = 'W'
+                classIcon.classList = ''
+                classIcon.classList.add('mystic-icon')
+                    break; 
+        case
+            "Seeker":
+                classIcon.innerText = 'E'
+                classIcon.classList = ''
+                classIcon.classList.add('seeker-icon')
+                    break;
+        }       
+
    
     while(showOneDeck.firstChild) {
         showOneDeck.removeChild(showOneDeck.firstChild)
     }
-
+    //Update Deck
     div.addEventListener('submit', (event) => {
         event.preventDefault()
         const id = event.target.getAttribute('data-id')
@@ -123,10 +162,10 @@ export const onShowDeckSuccess = (deck) => {
                 name : event.target[0].value,
                 Investigator : event.target[1].value,
                 XP : event.target[2].value,
-               
+               class: event.target[3].value
             }
         }
-    
+        
         updateDeck(deckData, id)
             .then(onUpdateDeckSuccess)
             .then(indexDeck)

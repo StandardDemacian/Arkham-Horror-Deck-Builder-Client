@@ -120,7 +120,8 @@ createDeckForm.addEventListener('submit', (event)=>{
 		deck : {
 			name : event.target[0].value,
 			Investigator : event.target[1].value,
-			XP : event.target[2].value
+			XP : event.target[2].value,
+			class: event.target[3].value
 		}
 	}
 	createDeck(deckData)

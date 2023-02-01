@@ -131,8 +131,6 @@ createDeckForm.addEventListener('submit', (event)=>{
 			.catch(onFailure)
 })
 
-//SHOW ALL CARDS IN DECK uses showCardById 
 
-// export const showCardbyId =(id)=> {
 
 

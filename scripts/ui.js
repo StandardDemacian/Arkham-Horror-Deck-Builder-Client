@@ -12,7 +12,7 @@ const homeContainer = document.getElementById('home-container')
 const showOneDeck = document.getElementById('show-one-deck')
 const decklistremovable = document.getElementById('deck-list-removable')
 const cardsInDeck = document.getElementById('cards-in-deck')
-
+const cardSearchcontainer = document.getElementById('card-search-container')
 
 
 export const onFailure = (error) => {
@@ -36,9 +36,10 @@ export const onSignInSuccess = (userToken) => {
     signUpContainer.style.display = "none"
     indexContainer.classList.remove('hide')
     decklistremovable.classList.remove('hide')
+    cardSearchcontainer.classList.remove('hide')
+
     
 }
-
 
 //Deck Actions reactions
 // On INDEX SUCCESS ----AFTER SIGN IN THIS HAPPENS
@@ -65,9 +66,6 @@ export const onIndexDeckSuccess = (deck) => {
 	})
 }
 
-
-
-
 //Create Deck
 export const onCreateDeckSuccess = () => {
     messageContainer.innerText = 'Created a new deck!'
@@ -76,7 +74,7 @@ export const onCreateDeckSuccess = () => {
     }
     
 }
-
+//function that gets a card by its name field
 const getCardName = (cardData) => {
     const deckCards = document.createElement('div')
     const cardName = cardData.card.name
@@ -163,22 +161,18 @@ export const onShowDeckSuccess = (deck) => {
 }
 
 //on Card add success
-
 export const onCardAddSuccess = () => {
         messageContainer.innerText = 'Card was added to deck successfully!'
         indexDeck()
 }
 
-
 // on Update player success 
-
 export const onUpdateDeckSuccess = () => {
     messageContainer.innerText = 'Deck Successfully updated'
     while(showOneDeck.firstChild) {
         showOneDeck.removeChild(showOneDeck.firstChild)
     }
 }
-
 
 export const onDeleteDeckSuccess = () => {
     messageContainer.innerText = 'Deck was deleted successfully'

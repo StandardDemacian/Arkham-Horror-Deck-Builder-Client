@@ -41,7 +41,7 @@
 
 #auth-container{
     font-family: 'Playfair Display', serif;
-    border: black;
+    border: 0, 0, 49, 0.15;
     border-style: solid;
     background-color: rgba(0, 0, 49, 0.15)
 }
@@ -49,7 +49,7 @@
 
 #card-search-container{
     font-family: 'Playfair Display', serif;
-    border: black;
+    border: 0, 0, 49, 0.15;
     border-style: solid;
     background-color: rgba(0, 0, 49, 0.15);
     text-align: center;
@@ -57,14 +57,14 @@
 
 #index-container{
     font-family: 'Playfair Display', serif;
-    border: black;
+    border: 0, 0, 49, 0.15;
     border-style: solid;
     background-color: rgba(0, 0, 49, 0.15)
 }
 
 #deck-list-removable{
     font-family: 'Playfair Display', serif;
-    border: black;
+    border: 0, 0, 49, 0.15;
     border-style: solid;
     background-color: rgba(0, 0, 49, 0.15)
 }
@@ -86,7 +86,7 @@
 #cards-in-deck{
     
     font-family: 'Playfair Display', serif;
-    border: black;
+    border: 0, 0, 49, 0.15;
     border-style: solid;
     text-align: center;
     

@@ -89,7 +89,6 @@ export const addCard = (data,id) => {
 }
 
 export const showCardbyId =(id)=> {
-	console.log("Here")
 	return fetch(`http://localhost:8000/card/id/${id}`)
 
 }

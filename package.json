@@ -5,7 +5,7 @@
   "name": "clientside",
   "version": "1.0.0",
   "description": "UI",
-  "main": "index.js",
+  "main": "index.html",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

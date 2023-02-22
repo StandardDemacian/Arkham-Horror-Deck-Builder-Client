@@ -96,12 +96,47 @@ export const onShowDeckSuccess = (deck) => {
         .then(cardData => (getCardName(cardData)))
     }
 
+    switch (deck.class) {
+  
+        case
+            "Rogue":
+                classIcon.innerText = 'T'
+                classIcon.classList = ''
+                classIcon.classList.add('Rogue-icon')
+                    break;
+        case
+            "Guardian":
+                classIcon.innerText = 'Q'
+                classIcon.classList = ''
+                classIcon.classList.add('Guardian-icon')
+                    break;  
+        case
+            "Survivor":
+                classIcon.innerText = 'R'
+                classIcon.classList = ''
+                classIcon.classList.add('Survivor-icon')
+                    break;
+     
+        case
+            "Mystic":
+                classIcon.innerText = 'W'
+                classIcon.classList = ''
+                classIcon.classList.add('Mystic-icon')
+                    break; 
+        case
+            "Seeker":
+                classIcon.innerText = 'E'
+                classIcon.classList = ''
+                classIcon.classList.add('Seeker-icon')
+                    break;
+        }
+
     const div = document.createElement('div')
     div.innerHTML = `
         <h3>${deck.name} </h3>
         <p> Ivestigator: ${deck.Investigator}</p>
         <p>XP: ${deck.XP}</p>
-        <p>class: ${deck.class}</p>
+        <p class="${deck.class}-icon" style="font-family:ArkhamFont; font-size: 40px ">${classIcon.innerText}</p>
         <p>Deck ID: ${deck._id}</p>
         <form data-id="${deck._id}">
         <input type="text" name="name" value="${deck.name}">
@@ -113,41 +148,6 @@ export const onShowDeckSuccess = (deck) => {
         <button data-id="${deck._id}" id="delete-button">Delete deck</button>
     
     `
-
-    switch (deck.class) {
-  
-        case
-            "Rogue":
-                classIcon.innerText = 'T'
-                classIcon.classList = ''
-                classIcon.classList.add('rogue-icon')
-                    break;
-        case
-            "Guardian":
-                classIcon.innerText = 'Q'
-                classIcon.classList = ''
-                classIcon.classList.add('guardian-icon')
-                    break;  
-        case
-            "Survivor":
-                classIcon.innerText = 'R'
-                classIcon.classList = ''
-                classIcon.classList.add('survivor-icon')
-                    break;
-     
-        case
-            "Mystic":
-                classIcon.innerText = 'W'
-                classIcon.classList = ''
-                classIcon.classList.add('mystic-icon')
-                    break; 
-        case
-            "Seeker":
-                classIcon.innerText = 'E'
-                classIcon.classList = ''
-                classIcon.classList.add('seeker-icon')
-                    break;
-        }       
 
    
     while(showOneDeck.firstChild) {

@@ -2,7 +2,7 @@ import { store } from './store.js'
 
 // User actions
 export const signUp = (data) => {
-	return fetch(`http://localhost:8000/sign-up`, {
+	return fetch(`https://arkham-horror-server.onrender.com/sign-up`, {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
@@ -13,7 +13,7 @@ export const signUp = (data) => {
 }
 
 export const signIn = (data) => {
-	return fetch(`http://localhost:8000/sign-in`, {
+	return fetch(`https://arkham-horror-server.onrender.com/sign-in`, {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
@@ -24,7 +24,7 @@ export const signIn = (data) => {
 }
 
 export const indexDeck = () => {
-    return fetch(`http://localhost:8000/deck`,{
+    return fetch(`https://arkham-horror-server.onrender.com/deck`,{
     	headers: {
         'Authorization': `Bearer ${store.userToken}`
     	}
@@ -32,7 +32,7 @@ export const indexDeck = () => {
 }
 
 export const createDeck = (data) => {
-    return fetch(`http://localhost:8000/deck`, {
+    return fetch(`https://arkham-horror-server.onrender.com/deck`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -44,7 +44,7 @@ export const createDeck = (data) => {
 }
 
 export const showDeck = (id) => {
-    return fetch(`http://localhost:8000/deck/${id}`,{
+    return fetch(`https://arkham-horror-server.onrender.com/deck/${id}`,{
 		headers: {
 			'Authorization': `Bearer ${store.userToken}`
 		}
@@ -52,7 +52,7 @@ export const showDeck = (id) => {
 }
 
 export const updateDeck = (data, id) => {
-    return fetch(`http://localhost:8000/deck/${id}`, {
+    return fetch(`https://arkham-horror-server.onrender.com/deck/${id}`, {
 			method: 'PATCH',
 			headers: {
 				'Accept': 'application/json',
@@ -64,7 +64,7 @@ export const updateDeck = (data, id) => {
 }
 
 export const deleteDeck= (id) => {
-    return fetch(`http://localhost:8000/deck/${id}`, {
+    return fetch(`https://arkham-horror-server.onrender.com/deck/${id}`, {
 			method: 'DELETE',
 			headers: {
 				'Authorization': `Bearer ${store.userToken}`
